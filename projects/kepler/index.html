@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../../assets/css/style.css">
   <script src="../../assets/js/main.js" defer></script>
 </head>
-<body class="project-page">
+<body class="project-page kepler-page">
   <a class="skip-link" href="#main">跳到主要内容</a>
   <nav class="project-nav" aria-label="项目导航">
     <a href="../../">← 返回作品集</a>
@@ -27,144 +27,243 @@
         <span class="archive-status">CURRENT FOCUS</span>
         <div class="project-facts">
           <div><small>ROLE</small><strong>独立开发 / 架构与验收</strong></div>
-          <div><small>STACK</small><strong>C++17 · OpenGL · Qt 6</strong></div>
-          <div><small>FOCUS</small><strong>实时渲染与可视化</strong></div>
-          <div><small>SOURCE</small><strong>Private · 面试可展示</strong></div>
+          <div><small>STACK</small><strong>C++17 · OpenGL 4.2 · Qt 6</strong></div>
+          <div><small>FOCUS</small><strong>实时渲染与天文可视化</strong></div>
+          <div><small>SOURCE</small><strong>In Progress</strong></div>
         </div>
       </div>
-
-      <div class="project-hero-art visual-kepler reveal" aria-hidden="true">
-        <div class="space-field"></div>
-        <div class="sun"></div>
-        <div class="orbit orbit-1"><i></i></div>
-        <div class="orbit orbit-2"><i></i></div>
-        <div class="orbit orbit-3"><i></i></div>
-        <span class="visual-label">J2000 / OPENGL 4.2</span>
-      </div>
+      <figure class="project-hero-art kepler-hero-media reveal">
+        <figcaption><span>STARGAZING / SPACE</span><strong>同一时刻，两种观察尺度</strong></figcaption>
+        <img src="media/screenshots/realtime-sky-space-comparison.png" alt="Kepler 地面观星与太阳系空间对照视图">
+      </figure>
     </header>
 
-    <section class="detail-section section-shell">
+    <section class="detail-section section-shell kepler-intro" id="overview">
       <div class="detail-heading reveal">
         <p class="eyebrow">OVERVIEW</p>
-        <h2>在同一应用中连接天文状态、场景组织与实时渲染。</h2>
+        <h2>把天文状态、场景组织和实时渲染放进同一个可交互系统。</h2>
       </div>
-      <p class="detail-copy reveal">
-        Kepler 提供太阳系空间视图、地面观星视图和双场景分屏模式。Qt 前端负责
-        交互与模拟时钟，天文模块提供天体状态，Visualization 将结果映射到场景图，
-        最终由自研 Graphics 模块完成渲染与后处理。
-      </p>
+      <div class="kepler-prose kepler-prose-lead reveal">
+        <p>Kepler 是一个以实时图形学学习为核心的个人项目。它提供太阳系空间视图、地面观星视图和双场景分屏模式，并将天体位置计算、星表检索、星座文化数据与实时渲染结合在同一套桌面应用中。</p>
+        <p>基础渲染框架由本人手动设计和实现；框架完成后，项目也成为一次持续的 Vibe Coding 实践。AI 参与了部分天文功能、Qt 界面、数据处理和跨模块重构，本人负责需求定义、架构决策、代码审查、调试、测试与最终验收。</p>
+      </div>
+      <aside class="realtime-definition reveal" aria-label="实时星空的含义">
+        <p class="eyebrow">WHAT “REAL-TIME SKY” MEANS</p>
+        <h3>“实时”不只表示现在，而是参数改变后立即重算并呈现天空。</h3>
+        <p>用户可以在 <strong>公元前 2000 年至公元 9999 年</strong>之间选择任意模拟日期与时刻，并设置地球上任意经纬度。观察时间、地点或视线发生改变后，恒星、太阳系天体、地平坐标和星座文化图层会随之更新。</p>
+        <small>当前实现不是专业高精度星历软件，遥远的历史与未来日期用于观察长期趋势。可辅助业余天文观测和中西方天文文化学习。</small>
+      </aside>
     </section>
 
-    <section class="detail-section section-shell">
+    <section class="detail-section section-shell" id="screenshots">
       <div class="detail-heading reveal">
-        <p class="eyebrow">DEMO</p>
-        <h2>视频文件就位后，播放器会自动替换当前占位区域。</h2>
+        <p class="eyebrow">VISUAL TOUR</p>
+        <h2>截图展示：星空坐标与空间视图，当下、历史与未来的天空。</h2>
       </div>
-      <div class="media-frame reveal" data-video-frame>
-        <video controls preload="metadata" playsinline>
+      <div class="kepler-gallery">
+        <figure class="kepler-shot kepler-shot-wide reveal">
+          <figcaption><span>星空坐标</span><strong>地面观星视图</strong><p>由观察者经纬度构建地平参考系，叠加地面、天体、坐标网格与标签。</p></figcaption>
+          <img loading="lazy" src="media/screenshots/realtime-sky-ground-observer.png" alt="Kepler 地面观星视图">
+        </figure>
+        <figure class="kepler-shot reveal">
+          <figcaption><span>空间尺度</span><strong>太阳系空间视图</strong><p>观察行星位置、轨道、极轴和地球参考系关系。</p></figcaption>
+          <img loading="lazy" src="media/screenshots/realtime-sky-solar-system.png" alt="Kepler 太阳系空间视图">
+        </figure>
+        <figure class="kepler-shot reveal">
+          <figcaption><span>双场景</span><strong>地面与空间对照</strong><p>两个视口独立渲染，并按鼠标所在视口分发相机输入。</p></figcaption>
+          <img loading="lazy" src="media/screenshots/realtime-sky-space-comparison.png" alt="Kepler 观星和空间分屏对照">
+        </figure>
+        <figure class="kepler-shot reveal">
+          <figcaption><span>星空文化</span><strong>西方星座</strong><p>连线、名称、边界与插图支持附近触发和渐变。</p></figcaption>
+          <img loading="lazy" src="media/screenshots/realtime-sky-western-constellations.png" alt="Kepler 西方星座显示">
+        </figure>
+        <figure class="kepler-shot reveal">
+          <figcaption><span>星空文化</span><strong>中国星官</strong><p>在同一天球坐标基础上切换另一套文化表达。</p></figcaption>
+          <img loading="lazy" src="media/screenshots/realtime-sky-chinese-asterisms.png" alt="Kepler 中国星官显示">
+        </figure>
+        <figure class="kepler-shot reveal">
+          <figcaption><span>历史的天空 · 1046 BC</span><strong>武王伐纣，岁在鹑火</strong><p>以武王伐纣时期（公元前1046年）为例，观察岁星（木星）与鹑火星次（对应狮子座）的关系。</p></figcaption>
+          <img loading="lazy" src="media/screenshots/historical-sky-1046-bc.png" alt="公元前1046年武王伐纣时期的天空模拟">
+        </figure>
+        <figure class="kepler-shot reveal">
+          <figcaption><span>未来的天空 · 约 7500 AD</span><strong>天钩五成为北极星</strong><p>通过长期岁差观察北天极附近恒星角色的变化。</p></figcaption>
+          <img loading="lazy" src="media/screenshots/future-sky-7500-polaris.png" alt="公元7500年前后天钩五接近北天极的天空模拟">
+        </figure>
+      </div>
+    </section>
+
+    <section class="detail-section section-shell" id="videos">
+      <div class="detail-heading reveal">
+        <p class="eyebrow">MOTION STUDIES</p>
+        <h2>视频展示：交互体验与天文现象演示</h2>
+      </div>
+      <article class="kepler-video kepler-video-featured reveal">
+        <div><span>OVERVIEW</span><h3>Kepler 综合演示</h3><p>太阳系空间视图、地面观星视图与交互功能总览。</p></div>
+        <video controls preload="metadata" playsinline poster="media/screenshots/realtime-sky-space-comparison.png">
           <source src="media/kepler-demo.mp4" type="video/mp4">
+          当前浏览器不支持 MP4 视频播放。
         </video>
-        <div class="media-placeholder">
-          <div>
-            <span class="media-placeholder-mark" aria-hidden="true">▶</span>
-            <h3>Kepler Demo</h3>
-            <p>将 H.264 MP4 视频放到 <code>projects/kepler/media/kepler-demo.mp4</code></p>
-          </div>
-        </div>
+      </article>
+      <div class="kepler-video-grid">
+        <article class="kepler-video reveal">
+          <div><span>天文现象</span><h3>月相演示</h3><p>随太阳、地球和月球相对位置变化呈现月面受光状态。</p></div>
+          <video controls preload="metadata" playsinline poster="media/screenshots/moon-phase.png"><source src="media/videos/moon-phases.mp4" type="video/mp4"></video>
+        </article>
+        <article class="kepler-video reveal">
+          <div><span>天文现象</span><h3>岁差演示（约1000 BC - 7000 AD）</h3><p>观察地球极轴方向和北天极的长期移动。</p></div>
+          <video controls preload="metadata" playsinline poster="media/screenshots/precession.png"><source src="media/videos/precession-demo.mp4" type="video/mp4"></video>
+        </article>
+        <article class="kepler-video reveal">
+          <div><span>天文现象</span><h3>行星视逆行演示（以火星为例）</h3><p>观察行星在天球上的运动轨迹和在空间中的相对运动。</p></div>
+          <video controls preload="metadata" playsinline poster="media/screenshots/mars-track.png"><source src="media/videos/mars-track.mp4" type="video/mp4"></video>
+        </article>
+        <article class="kepler-video reveal">
+          <div><span>交互体验</span><h3>星座与星官动画</h3><p>附近模式、逐段绘制与插图渐隐渐现。</p></div>
+          <video controls preload="metadata" playsinline poster="media/screenshots/realtime-sky-western-constellations.png"><source src="media/videos/sky-culture-animation.mp4" type="video/mp4"></video>
+        </article>
+        <article class="kepler-video reveal">
+          <div><span>交互体验</span><h3>Sprite到三维模型（土星）</h3><p>根据投影像素半径，在远距离精灵和近距离纹理模型间交叉淡化。</p></div>
+          <video controls preload="metadata" playsinline poster="media/screenshots/saturn-zoomed-in.png"><source src="media/videos/planet-lod-saturn.mp4" type="video/mp4"></video>
+        </article>
+        <article class="kepler-video reveal">
+          <div><span>交互体验</span><h3>Sprite到三维模型（木星）</h3><p>在广角可见性与放大后的表面细节之间连续过渡。</p></div>
+          <video controls preload="metadata" playsinline poster="media/screenshots/jupiter-zoomed-in.png"><source src="media/videos/planet-lod-jupiter.mp4" type="video/mp4"></video>
+        </article>
       </div>
     </section>
 
-    <section class="detail-section section-shell">
+    <section class="detail-section section-shell" id="development">
       <div class="detail-heading reveal">
-        <p class="eyebrow">CAPABILITIES</p>
+        <p class="eyebrow">DEVELOPMENT BOUNDARY</p>
+        <h2>手写基础渲染框架，使用 AI 扩展项目，但持续保留技术判断。</h2>
+      </div>
+      <div class="kepler-ownership">
+        <article class="reveal"><span>MANUAL FOUNDATION</span><h3>手动设计和实现</h3><ul><li><strong>组合式场景节点：</strong>遵循“组合优于继承”，由 SceneNode 组合 Transform、RenderComponent 与一个或多个 IMotionComponent。</li><li><strong>组合式材质：</strong>Material 由 ShaderProgram、TextureMap 和 ShaderParameters 组合形成，将着色程序、纹理槽与参数数据解耦。</li><li><strong>领域与表现分离：</strong>Astronomy 只提供天体位置、姿态和时间等领域状态，由 Visualization 映射为场景节点及其变换。</li><li><strong>离屏渲染管线：</strong>点光源 Shadow Map → HDR 场景绘制 → Bloom 降采样与模糊 → HDR 合成及 sRGB 映射。</li><li><strong>OpenGL 资源管理：</strong>封装 ShaderProgram、Texture、Mesh、UniformBuffer、Framebuffer 等资源及其创建、绑定与生命周期。</li></ul></article>
+        <article class="reveal"><span>AI ASSISTED</span><h3>AI 辅助迭代</h3><ul><li>部分天文模型与星表数据管线</li><li>Qt 控制面板与双场景状态同步</li><li>星座文化、标签、跟踪与动画</li><li>跨模块重构、测试和重复代码</li></ul></article>
+        <article class="reveal"><span>OWNERSHIP</span><h3>本人持续负责</h3><ul><li>需求定义与实现优先级</li><li>模块归属、接口边界和代码审查</li><li>编译、测试、视觉检查和 GPU 调试</li><li>问题定位、结果验证与最终验收</li></ul></article>
+      </div>
+    </section>
+
+    <section class="detail-section section-shell" id="capabilities">
+      <div class="detail-heading reveal">
+        <p class="eyebrow">CORE CAPABILITIES</p>
         <h2>两个观察尺度，一套持续演进的场景系统。</h2>
       </div>
-      <div class="feature-list">
-        <article class="feature-item reveal"><span>01</span><h3>双场景与分屏</h3><p>空间视图和地面观星视图独立更新、渲染和接收相机输入，也可以等分显示。</p></article>
-        <article class="feature-item reveal"><span>02</span><h3>天体状态</h3><p>使用 VSOP87A、ELP/MPP02 与 IAU 定向模型驱动行星、月球和自转姿态。</p></article>
-        <article class="feature-item reveal"><span>03</span><h3>星空数据</h3><p>将 HYG 星表预处理为二进制数据，通过 HEALPix 与视星等动态筛选可见恒星。</p></article>
-        <article class="feature-item reveal"><span>04</span><h3>实时渲染</h3><p>包含 HDR、Bloom、深度立方体阴影、MSAA、透明排序和屏幕空间抗锯齿宽线。</p></article>
-        <article class="feature-item reveal"><span>05</span><h3>星座文化</h3><p>展示西方星座与中国星官的连线、名称、边界、插图和附近触发动画。</p></article>
-        <article class="feature-item reveal"><span>06</span><h3>时间与跟踪</h3><p>支持 UTC/TT、日历单位推进、观察者经纬度和太阳系天体平滑跟踪。</p></article>
+      <div class="kepler-capability-list reveal">
+        <article><span>01</span><div><h3>太阳系空间视图</h3><p>显示太阳、八大行星、月球、轨道、自转轴和环系统；支持真实距离与概览布局、自由空间相机及地球参考系附着。</p></div></article>
+        <article><span>02</span><div><h3>地面观星视图</h3><p>根据观察者经纬度建立 Observer Frame，显示地面、恒星、太阳系天体、赤道、黄道、岁差圆和天球坐标网格。</p></div></article>
+        <article><span>03</span><div><h3>时间模拟与天体跟踪</h3><p>支持 UTC / TT、实时与加速播放、日历单位推进，并可平滑锁定太阳、行星或月球。</p></div></article>
+        <article><span>04</span><div><h3>恒星与星座文化</h3><p>通过 HYG、HEALPix 和视星等筛选绘制恒星；支持西方星座和中国星官的连线、名称、边界与插图。</p></div></article>
+        <article><span>05</span><div><h3>实时渲染</h3><p>包含 HDR、Bloom、深度立方体阴影、MSAA、多渲染队列、透明排序和屏幕空间抗锯齿宽线。</p></div></article>
+        <article><span>06</span><div><h3>双场景分屏</h3><p>空间视图与观星视图可以独立或同时显示，各自维护投影、相机和渲染结果。</p></div></article>
+      </div>
+      <div class="kepler-stack reveal" aria-label="Kepler 技术栈">
+        <div><small>LANGUAGE</small><strong>C++17 · GLSL 4.20</strong></div>
+        <div><small>GRAPHICS</small><strong>OpenGL 4.2 · GLAD</strong></div>
+        <div><small>DESKTOP</small><strong>Qt 6 · QOpenGLWidget</strong></div>
+        <div><small>MATH / ASTRO</small><strong>GLM · Eigen · ERFA</strong></div>
+        <div><small>DATA</small><strong>HYG · HEALPix · JSON</strong></div>
+        <div><small>BUILD</small><strong>CMake · Ninja · vcpkg</strong></div>
       </div>
     </section>
 
-    <section class="detail-section section-shell">
+    <section class="detail-section section-shell" id="architecture">
       <div class="detail-heading reveal">
-        <p class="eyebrow">ARCHITECTURE</p>
-        <h2>天文计算与图形资源分离，由可视化层完成映射。</h2>
+        <p class="eyebrow">SYSTEM ARCHITECTURE</p>
+        <h2>天文计算与图形资源分离，由 Visualization 完成领域状态到场景的映射。</h2>
       </div>
-      <div class="architecture reveal" aria-label="Kepler 模块架构">
-        <div class="architecture-column">
-          <div class="architecture-node"><strong>Qt Frontend</strong><small>窗口 · 输入 · 控件 · 模拟时钟</small></div>
-          <div class="architecture-node"><strong>Offline Tools</strong><small>HYG 转换 · HEALPix 索引</small></div>
+      <div class="kepler-diagram reveal" role="img" aria-label="Kepler 总体架构：用户输入经过 Qt Frontend 进入 Visualization，再驱动 Graphics；Astronomy 和 SkyCulture 向 Visualization 提供领域数据，离线工具生成星表索引。">
+        <div class="diagram-main-flow">
+          <div class="diagram-node diagram-node-small"><small>INPUT</small><strong>用户输入<br>与时间控制</strong></div>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <div class="diagram-group"><p>QT FRONTEND</p><div class="diagram-node"><strong>主窗口与控制面板</strong><small>QOpenGLWidget / 双视口输出</small></div></div>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <div class="diagram-group diagram-group-accent"><p>VISUALIZATION</p><div class="diagram-node"><strong>Application</strong><small>空间场景 · 地面观星场景</small></div><div class="diagram-node"><strong>Controllers / Labels</strong><small>相机 · 天体跟踪 · 屏幕标签</small></div></div>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <div class="diagram-group"><p>GRAPHICS · 自研渲染框架</p><div class="diagram-node"><strong>Scene Graph / Renderer</strong><small>Transform · Render Queue</small></div><div class="diagram-node"><strong>Resources / Buffers</strong><small>Mesh · Material · Shader · UBO · FBO</small></div><div class="diagram-node"><strong>Post Process</strong><small>Shadow · HDR · Bloom · MSAA · sRGB</small></div></div>
         </div>
-        <div class="architecture-arrow" aria-hidden="true">→</div>
-        <div class="architecture-column">
-          <div class="architecture-node"><strong>Visualization</strong><small>空间场景 · 观星场景 · 相机 · 标签</small></div>
-          <div class="architecture-node"><strong>SkyCulture</strong><small>星座 · 星官 · 连线 · 插图</small></div>
+        <div class="diagram-support-flow">
+          <div class="diagram-group"><p>OFFLINE TOOLS</p><div class="diagram-node"><strong>hyg_to_kepler</strong><small>HYG CSV → stars.bin + HEALPix</small></div></div>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <div class="diagram-group"><p>DOMAIN DATA</p><div class="diagram-node"><strong>Astronomy</strong><small>轨道 · 姿态 · 时间 · 星表</small></div><div class="diagram-node"><strong>SkyCulture</strong><small>星座 · 星官 · 插图 · 名称</small></div></div>
+          <span class="diagram-arrow diagram-arrow-up" aria-hidden="true">↗</span>
+          <p class="diagram-caption">领域模块不持有 OpenGL 对象；Visualization 负责将计算结果转换为可渲染场景状态。</p>
         </div>
-        <div class="architecture-arrow" aria-hidden="true">→</div>
-        <div class="architecture-column">
-          <div class="architecture-node"><strong>Graphics</strong><small>Scene Graph · Renderer · Material · FBO</small></div>
-          <div class="architecture-node"><strong>Astronomy</strong><small>轨道 · 姿态 · 时间 · 星表</small></div>
-        </div>
+      </div>
+      <div class="table-wrap reveal">
+        <table class="kepler-table">
+          <thead><tr><th>模块</th><th>主要职责</th></tr></thead>
+          <tbody>
+            <tr><td><code>graphics</code></td><td>场景图、变换、网格、材质、着色器、纹理、帧缓冲、统一缓冲区、渲染状态与队列</td></tr>
+            <tr><td><code>astronomy</code></td><td>UTC / TT 时间、太阳系天体位置和姿态、视亮度、HYG 星表及 HEALPix 索引</td></tr>
+            <tr><td><code>skyculture</code></td><td>西方星座和中国星官的名称、连线、边界及插图描述</td></tr>
+            <tr><td><code>visualization</code></td><td>把天文状态映射到两个可视化场景，管理相机、动画、标签和显示策略</td></tr>
+            <tr><td><code>qt_frontend</code></td><td>窗口、分屏输出、输入、模拟时间与图层控制面板</td></tr>
+            <tr><td><code>hyg_to_kepler</code></td><td>将 CSV 星表转换为程序可直接加载的二进制数据</td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <section class="detail-section section-shell">
+    <section class="detail-section section-shell" id="pipeline">
       <div class="detail-heading reveal">
         <p class="eyebrow">FRAME PIPELINE</p>
-        <h2>从模拟时刻到最终屏幕标签的单帧路径。</h2>
+        <h2>从模拟时刻，到 HDR 场景，再到 Qt 文本标签的单帧路径。</h2>
       </div>
-      <div class="pipeline reveal">
-        <div><strong>更新天文状态与场景变换</strong></div>
-        <div><strong>更新 UBO 与可选阴影图</strong></div>
-        <div><strong>遍历场景并收集渲染命令</strong></div>
-        <div><strong>按队列排序并写入 HDR</strong></div>
-        <div><strong>Bloom 模糊与 sRGB 合成</strong></div>
-        <div><strong>视口 Blit 与文本标签</strong></div>
+      <div class="kepler-pipeline reveal" role="img" aria-label="Kepler 单帧渲染流程">
+        <div class="pipeline-row pipeline-row-main">
+          <div><small>01</small><strong>Qt 模拟时钟与输入</strong></div><span>→</span>
+          <div><small>02</small><strong>更新天文状态与场景变换</strong></div><span>→</span>
+          <div><small>03</small><strong>更新 Scene UBO 与可选阴影图</strong></div><span>→</span>
+          <div><small>04</small><strong>遍历场景图并收集 RenderCommand</strong></div>
+        </div>
+        <p class="pipeline-label">RENDER QUEUES</p>
+        <div class="pipeline-queues">
+          <div><strong>Opaque</strong><small>前 → 后</small></div>
+          <div><strong>Bloom</strong><small>发光对象</small></div>
+          <div><strong>Sky</strong><small>显式层级</small></div>
+          <div><strong>Transparent</strong><small>后 → 前</small></div>
+          <div><strong>Foreground</strong><small>地面近景层</small></div>
+        </div>
+        <div class="pipeline-merge" aria-hidden="true">↓</div>
+        <div class="pipeline-row pipeline-row-post">
+          <div><strong>HDR / MSAA</strong></div><span>→</span>
+          <div><strong>Resolve</strong></div><span>→</span>
+          <div><strong>Bloom 降采样与高斯模糊</strong></div><span>→</span>
+          <div><strong>HDR + Bloom / sRGB</strong></div><span>→</span>
+          <div><strong>Qt 视口 Blit</strong></div><span>→</span>
+          <div><strong>QPainter 标签层</strong></div>
+        </div>
       </div>
     </section>
 
-    <section class="detail-section section-shell">
+    <section class="detail-section section-shell" id="implementation">
       <div class="detail-heading reveal">
         <p class="eyebrow">IMPLEMENTATION NOTES</p>
-        <h2>几个贯穿项目的技术选择。</h2>
+        <h2>贯穿项目的关键技术选择。</h2>
       </div>
-      <div class="feature-list">
-        <article class="feature-item reveal"><span>SCENE GRAPH</span><h3>极轴与自转分层</h3><p>平移、极轴参考系、自转和视觉缩放使用独立节点，土星环与极轴标记不会继承每日自转。</p></article>
-        <article class="feature-item reveal"><span>RENDER QUEUES</span><h3>不同对象采用不同排序</h3><p>不透明对象前到后，透明对象后到前，天空与前景层使用显式稳定顺序。</p></article>
-        <article class="feature-item reveal"><span>SCALE</span><h3>真实方向与视觉尺度分离</h3><p>在保留天体方向和轨道形状的前提下，为真实距离和可读视觉尺寸选择不同映射。</p></article>
-        <article class="feature-item reveal"><span>STARS</span><h3>离线预处理，运行时筛选</h3><p>CSV 不在启动时解析；二进制星表按可见天区和极限星等筛选后实例化绘制。</p></article>
-        <article class="feature-item reveal"><span>LINES</span><h3>宽线不依赖 glLineWidth</h3><p>几何着色器生成屏幕空间带状几何，片元着色器通过覆盖率处理边缘与端点。</p></article>
-        <article class="feature-item reveal"><span>LABELS</span><h3>三维候选，二维布局</h3><p>标签投影到屏幕后按优先级和矩形碰撞布局，再由 Qt 文本层绘制。</p></article>
-      </div>
-    </section>
-
-    <section class="detail-section section-shell">
-      <div class="detail-heading reveal">
-        <p class="eyebrow">DEVELOPMENT</p>
-        <h2>手写基础框架，使用 AI 扩展功能，但由我持续做出判断。</h2>
-      </div>
-      <div class="feature-list">
-        <article class="feature-item reveal"><span>MANUAL FOUNDATION</span><h3>手动设计和实现</h3><p>OpenGL 接入、渲染循环、Scene Graph、Transform、Mesh、Material、Shader、纹理、UBO、Framebuffer 和基础相机。</p></article>
-        <article class="feature-item reveal"><span>AI ASSISTED</span><h3>AI 辅助迭代</h3><p>部分天文模型接入、Qt 界面、星座文化、标签、跟踪、测试与跨模块重构。</p></article>
-        <article class="feature-item reveal"><span>OWNERSHIP</span><h3>本人持续负责</h3><p>需求、技术选择、代码审查、调试、性能分析、结果验证和功能验收。</p></article>
+      <div class="kepler-notes">
+        <article class="reveal"><span>01 · SCENE GRAPH</span><h3>场景图与天体姿态分层</h3><p>每个天体用独立节点表达平移、极轴方向、自转和视觉缩放。极轴与土星环只继承极轴方向，行星表面继续继承自转，避免把物理姿态和网格尺寸混进同一变换。</p></article>
+        <article class="reveal"><span>02 · RENDER QUEUES</span><h3>透明对象与多队列管理</h3><p>Opaque、Bloom、Sky、Transparent、Foreground 分别承担不同排序规则。地面使用独立前景投影，避免极小近裁剪面破坏整个场景的深度精度。</p></article>
+        <article class="reveal"><span>03 · POST PROCESS</span><h3>HDR、Bloom、阴影与抗锯齿</h3><p>HDR 场景和 Bloom 提取写入不同附件；Bloom 经降采样和双向高斯模糊后合成。太阳阴影使用深度立方体贴图，球体边缘支持可选 MSAA。</p></article>
+        <article class="reveal"><span>04 · STAR DATA</span><h3>大规模恒星数据处理</h3><p>独立工具把 HYG CSV 转换为二进制星表并建立 HEALPix 索引。运行时只查询视锥相交天区，再按 FOV 对应的极限星等筛选并实例化绘制。</p></article>
+        <article class="reveal"><span>05 · ASTRONOMY</span><h3>天文状态与时间系统</h3><p>行星位置采用 VSOP87A，月球采用 ELP/MPP02，天体姿态采用 IAU 模型。内部统一使用 J2000 TT 秒数，现代日期另支持 UTC 和闰秒转换。</p></article>
+        <article class="reveal"><span>06 · SCALE</span><h3>真实距离与可读尺度</h3><p>空间视图提供真实距离与概览布局，并在切换时连续插值。地面观星视图分别映射距离和视觉尺寸，以保留真实角位置并让远处天体可见。</p></article>
+        <article class="reveal"><span>07 · CAMERA</span><h3>坐标系与相机</h3><p>空间相机用四元数累计局部轴旋转；Observer Frame 由地球极轴、自转和观察者经纬度构建。跟踪控制器先平滑获取目标，再维持视线锁定。</p></article>
+        <article class="reveal"><span>08 · LABELS</span><h3>标签与星座文化动画</h3><p>三维候选标签投影到屏幕后，按优先级、亮度和矩形碰撞决定布局。附近模式使用进入/退出双阈值形成滞回，避免边界闪烁。</p></article>
       </div>
     </section>
 
-    <section class="detail-section section-shell">
+    <section class="detail-section section-shell kepler-closing">
       <div class="note-panel reveal">
-        <strong>项目定位与精度边界：</strong>
-        Kepler 的主要目标是学习实时图形学、场景组织和 AI 辅助开发，不是专业星历软件。
-        当前轨道和姿态计算仍包含 TT/TDB 近似，地球模型未包含 UT1、章动和极移，轨道线也只是视觉参考。
+        <strong>项目定位与精度边界</strong>
+        <p>Kepler 的主要目标是学习实时图形学、场景组织和 AI 辅助软件开发，不是专业星历软件。轨道和姿态计算仍包含 TT / TDB 近似；地球自转未包含 UT1、章动、极移和历史 Delta-T 修正；参考轨道线也不表示瞬时密切轨道。因此，极端历史或未来日期适合观察长期趋势，不应作为高精度观测结果。</p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer section-shell">
-    <div><strong>KEPLER / PROJECT 01</strong><p>Private source · Selected implementation available during interviews.</p></div>
+    <div><strong>KEPLER / PROJECT 01</strong><p>Source code available upon request.</p></div>
     <div class="footer-note"><a class="text-link" href="../../">返回全部项目 <span aria-hidden="true">↗</span></a></div>
   </footer>
 </body>

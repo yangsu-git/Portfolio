@@ -13,25 +13,30 @@ Vibe Coding 实践。AI 参与了部分天文功能、Qt 界面、数据处理�
 > 本仓库仅用于项目展示，不包含完整源码、原始数据和可构建工程。完整源码暂不
 > 公开，可在面试过程中展示核心模块及开发历史。
 
-<!--
-发布前请完成以下事项：
-1. 将截图放入 media/，文件名与下文一致；
-2. 将“演示视频：待补充”替换为 Bilibili 或 GitHub 视频地址；
-3. 检查截图和视频中是否暴露本地路径、账户信息或私有仓库地址；
-4. 确认所有公开图片、纹理和数据的再发布许可。
--->
-
 ## 项目演示
 
-**演示视频：** 待补充
+**综合演示：** [播放 Kepler Demo](media/kepler-demo.mp4)
 
 | 太阳系空间视图 | 地面观星视图 |
 | --- | --- |
-| ![太阳系空间视图](media/space-scene.webp) | ![地面观星视图](media/stargazing-scene.webp) |
+| ![太阳系空间视图](media/screenshots/realtime-sky-solar-system.png) | ![地面观星视图](media/screenshots/realtime-sky-ground-observer.png) |
 
-| 双场景分屏 | 天体跟踪与星座文化 |
+| 双场景分屏 | 中国星官 |
 | --- | --- |
-| ![双场景分屏](media/split-view.webp) | ![天体跟踪与星座文化](media/celestial-tracking.webp) |
+| ![双场景分屏](media/screenshots/realtime-sky-space-comparison.png) | ![中国星官](media/screenshots/realtime-sky-chinese-asterisms.png) |
+
+其他演示视频：
+
+- [岁差演示](media/videos/precession-demo.mp4)
+- [星座与星官动画效果](media/videos/sky-culture-animation.mp4)
+- [月相演示](media/videos/moon-phases.mp4)
+- [土星行星 LOD](media/videos/planet-lod-saturn.mp4)
+- [木星行星 LOD](media/videos/planet-lod-jupiter.mp4)
+
+这里的“实时星空”不只表示当前系统时间。用户可在 TT 日历中选择公元前 2000 年
+至公元 9999 年之间的任意日期与时刻，并设置地球上任意经纬度；场景会根据这些
+参数即时重新计算和显示。极端历史与未来日期主要用于观察长期趋势，不代表专业
+高精度星历结果。
 
 ## 核心功能
 
@@ -43,8 +48,9 @@ Vibe Coding 实践。AI 参与了部分天文功能、Qt 界面、数据处理�
   分发给对应相机。
 - **天体跟踪**：相机平滑转向并锁定太阳、行星或月球；空间视图同步显示地球到
   目标天体的方向关系。
-- **时间模拟**：支持实时播放、加速播放、暂停及按小时、日、月、年进行日历单位
-  推进；UTC 与 TT 使用同一模拟时刻。
+- **时间模拟**：支持公元前 2000 年至公元 9999 年的 TT 日历输入、实时播放、
+  加速播放、暂停及按小时、日、月、年进行日历单位推进；UTC 与 TT 使用同一
+  模拟时刻。
 - **星座文化**：支持西方星座与中国星官的连线、名称、边界和插图，并提供附近
   显示、渐隐渐现和逐段绘制动画。
 - **双语标签**：太阳、月球、行星、恒星、星座和星官名称可切换中英文；标签在
@@ -64,7 +70,7 @@ Vibe Coding 实践。AI 参与了部分天文功能、Qt 界面、数据处理�
 
 ## 总体架构
 
-项目按职责划分为五个主要模块。Qt 前端只负责窗口、控件、输入和模拟时钟；
+项目按职责划分为五个运行时模块与一个离线转换工具。Qt 前端只负责窗口、控件、输入和模拟时钟；
 Visualization 负责组织两个场景；Graphics 与 Astronomy 保持相互独立，避免将
 天文计算直接耦合到 OpenGL 对象中。
 
@@ -236,7 +242,8 @@ flowchart LR
 - 月球相对地球的位置使用 ELP/MPP02 模型。
 - 非地球天体姿态使用 IAU 天体定向模型；地球使用长期平均岁差与近似均匀自转。
 - 内部统一使用 J2000 TT 秒数；现代日期支持 UTC、闰秒和 TT 转换。
-- 历史模拟使用前推格里高利历表示 TT，可在界面中追溯到公元前 2000 年。
+- 历史与未来模拟使用前推格里高利历表示 TT，界面范围为公元前 2000 年至
+  公元 9999 年。
 - 参考轨道线是固定椭圆可视化引导，不等同于随时间变化的瞬时密切轨道。
 
 ### 6. 两种空间尺度策略
@@ -271,11 +278,19 @@ flowchart LR
 
 ### 手动设计和实现
 
-- OpenGL 上下文接入与基础渲染循环。
-- Scene Graph、Transform、Mesh、Material、ShaderProgram 等基础抽象。
-- 纹理、Uniform Buffer、Framebuffer 与基础相机系统。
-- 渲染队列、渲染状态和基础资源管理框架。
-- 对实时图形学问题的学习、实验和早期功能实现。
+- **组合式场景节点**：遵循“组合优于继承”的原则，由 `SceneNode` 组合
+  `Transform`、`RenderComponent` 与一个或多个 `IMotionComponent`，避免为不同
+  场景对象建立不断扩张的节点继承层次。
+- **组合式材质**：`Material` 由 `ShaderProgram`、`TextureMap` 和
+  `ShaderParameters` 组合形成，将着色程序、纹理槽与参数数据解耦，在复用通用
+  材质行为的同时按需装配渲染资源。
+- **天文数据与场景节点分离**：`astronomy` 只提供天体位置、姿态、时间和星表等
+  领域状态；`visualization` 负责将这些结果映射为场景节点、变换和显示策略，
+  天文模块不直接持有 OpenGL 对象。
+- **离屏渲染管线**：手动组织点光源深度立方体 Shadow Map、HDR 场景绘制、
+  Bloom 降采样与高斯模糊、HDR 合成及最终 sRGB 映射。
+- **OpenGL 资源管理**：设计并实现 `ShaderProgram`、`Texture`、`Mesh`、
+  `UniformBuffer`、`Framebuffer` 等资源抽象，管理创建、绑定、更新和生命周期。
 
 ### AI 辅助迭代
 
